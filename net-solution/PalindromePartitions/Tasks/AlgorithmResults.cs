@@ -8,7 +8,7 @@ namespace PalindromePartitions.Tasks
 	public class AlgorithmResults
 	{
 		// Max number of partitions to display.
-		private const int maxResultsDisplay = 100;
+		private const int MaxResultsDisplay = 100;
 		
 		
 		// Initialize list of partitions using input string.
@@ -40,15 +40,15 @@ namespace PalindromePartitions.Tasks
 		
 		// Debug function indicates output mode based on given number. Used for unit testing.
 		public static int GetOutputType(int resultCount)
-		{
-			int resultFlag = -1;
+        {
+            int resultFlag;
 			
-			if (resultCount > 0 && resultCount <= maxResultsDisplay)
+			if (resultCount > 0 && resultCount <= MaxResultsDisplay)
 			{
 				// Complete.
 				resultFlag = 1;
 			}
-			else if (resultCount > maxResultsDisplay)
+			else if (resultCount > MaxResultsDisplay)
 			{
 				// Truncated.
 				resultFlag = 0;
@@ -66,24 +66,21 @@ namespace PalindromePartitions.Tasks
 		// Output display loop.
 		private static void PrintOutput(List<Partition> rList)
 		{
-			int loopIndex = 0;
-			int loopCutoff = Math.Min(rList.Count, maxResultsDisplay);
-			Partition currentPartition = Partition.Empty();
-			string currentString = "";
-			
-			// Header
+            int loopCutoff = Math.Min(rList.Count, MaxResultsDisplay);
+
+            // Header
 			Console.WriteLine("");
 			Console.WriteLine("---RESULTS---");
 			
 			// Loop writes individual partitions to console, up to 100.
-			for (loopIndex = 0; loopIndex < loopCutoff; loopIndex = loopIndex + 1)
+			for (int loopIndex = 0; loopIndex < loopCutoff; loopIndex++)
 			{
-				currentPartition = rList[loopIndex];
-				currentString = currentPartition.Join();
+				Partition currentPartition = rList[loopIndex];
+				string currentString = currentPartition.Join();
 				Console.WriteLine(currentString);
 			}
 			
-			if (rList.Count > maxResultsDisplay)
+			if (rList.Count > MaxResultsDisplay)
 			{
 				// Truncate further results.
 				TruncateResults(rList.Count);
@@ -96,8 +93,8 @@ namespace PalindromePartitions.Tasks
 		// Displays result truncate message.
 		private static void TruncateResults(int totalResCount)
 		{
-			int truncateCount = totalResCount - maxResultsDisplay;
-			string outputString = "";
+			int truncateCount = totalResCount - MaxResultsDisplay;
+            string outputString;
 			
 			if (truncateCount > 1)
 			{

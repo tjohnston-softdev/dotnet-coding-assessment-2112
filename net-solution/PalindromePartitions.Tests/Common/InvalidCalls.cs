@@ -106,8 +106,8 @@ namespace PalindromePartitions.Tests.Common
 		// Check if correct error caught.
 		public static void CheckErrorResult(TryCatchResult resObj, string expectedError)
 		{
-			Assert.False(resObj.successful);
-			Assert.AreEqual(resObj.errorMessage, expectedError);
+			Assert.False(resObj.Successful);
+			Assert.AreEqual(resObj.ErrorMessage, expectedError);
 		}
     }
 }

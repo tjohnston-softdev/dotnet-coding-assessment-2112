@@ -4,27 +4,21 @@ namespace PalindromePartitions.Classes
 	public class TryCatchResult
 	{
 		// Private properties.
-		private bool pSuccessful = false;
-		private string pErrorMessage = "";
+		private bool _successful;
+        private string _errorMessage;
 		
 		
 		// Constructor.
 		public TryCatchResult(bool successVal, string msgVal)
 		{
-			pSuccessful = successVal;
-			pErrorMessage = msgVal;
+            _successful = successVal;
+            _errorMessage = msgVal;
 		}
 		
-		// Successful.
-		public bool successful
-		{
-			get {return pSuccessful;}
-		}
-		
-		// Error message string.
-		public string errorMessage
-		{
-			get {return pErrorMessage;}
-		}
-	}
+		// Successful property.
+		public bool Successful => _successful;
+
+        // Error message string property.
+		public string ErrorMessage => _errorMessage;
+    }
 }

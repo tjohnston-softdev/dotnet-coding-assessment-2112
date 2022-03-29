@@ -8,39 +8,33 @@ namespace PalindromePartitions.Classes
 	public class Partition
 	{
 		// Ignore substrings that contain invalid characters when parsing.
-		private static Regex invalidChars = new Regex("[^A-Z0-9]+", RegexOptions.IgnoreCase);
+		private static readonly Regex InvalidChars = new Regex("[^A-Z0-9]+", RegexOptions.IgnoreCase);
 		
 		// Wrap string list.
-		private List<string> substrings = new List<string>();
+		private readonly List<string> _substrings;
 		
 		
 		// Base constructor.
 		private Partition(List<string> listVal)
 		{
-			substrings = listVal;
+			_substrings = listVal;
 		}
 		
 		
 		// Constructor - Partition from input string.
 		public static Partition Initialize(ref string fullStr)
 		{
-			int loopIndex = 0;
-			string currentChar = "";
-			bool currentSkip = false;
-			List<string> charList = new List<string>();
+            List<string> charList = new List<string>();
 			
 			// Loop characters in string.
-			for (loopIndex = 0; loopIndex < fullStr.Length; loopIndex = loopIndex + 1)
+			for (int loopIndex = 0; loopIndex < fullStr.Length; loopIndex++)
 			{
-				currentChar = fullStr[loopIndex].ToString();
-				currentSkip = invalidChars.IsMatch(currentChar);
+				string currentChar = fullStr[loopIndex].ToString();
+				bool currentSkip = InvalidChars.IsMatch(currentChar);
 				
-				if (currentSkip != true)
-				{
-					charList.Add(currentChar);
-				}
-				
-			}
+				if (currentSkip != true) charList.Add(currentChar);
+
+            }
 			
 			Partition objectRes = new Partition(charList);
 			return objectRes;
@@ -59,30 +53,19 @@ namespace PalindromePartitions.Classes
 		// Constructor - Parsed from comma-separated string.
 		public static Partition Parse(string fullText)
 		{
-			string[] splitArray = new string[0];
-			
-			int subIndex = 0;
-			string currentSubstring = "";
-			bool badFound = false;
-			
-			List<string> listObj = new List<string>();
-			
-			// Split by comma.
-			splitArray = fullText.Split(",", StringSplitOptions.RemoveEmptyEntries);
-			
-			
+            string[] splitArray = fullText.Split(",", StringSplitOptions.RemoveEmptyEntries);
+            List<string> listObj = new List<string>();
+
+
 			// Loop substrings.
-			for (subIndex = 0; subIndex < splitArray.Length; subIndex = subIndex + 1)
+			for (int subIndex = 0; subIndex < splitArray.Length; subIndex++)
 			{
 				// Read substring and validate characters.
-				currentSubstring = splitArray[subIndex];
-				badFound = invalidChars.IsMatch(currentSubstring);
+				string currentSubstring = splitArray[subIndex];
+				bool badFound = InvalidChars.IsMatch(currentSubstring);
 				
 				// Add string if valid.
-				if (currentSubstring.Length > 0 && badFound != true)
-				{
-					listObj.Add(currentSubstring);
-				}
+				if (currentSubstring.Length > 0 && !badFound) listObj.Add(currentSubstring);
 			}
 			
 			Partition objectRes = new Partition(listObj);
@@ -114,13 +97,8 @@ namespace PalindromePartitions.Classes
 		public List<string> Slice(int sliceStart, int sliceLength)
 		{
 			List<string> sliceRes = new List<string>();
-			
-			if (sliceLength > 0)
-			{
-				sliceRes = substrings.GetRange(sliceStart, sliceLength);
-			}
-			
-			return sliceRes;
+            if (sliceLength > 0) sliceRes = _substrings.GetRange(sliceStart, sliceLength);
+            return sliceRes;
 		}
 		
 		
@@ -129,11 +107,8 @@ namespace PalindromePartitions.Classes
 		{
 			int prepStart = sIndex;
 			int prepEnd = eIndex;
-			int itemCount = -1;
-			List<string> chosenElements = new List<string>();
-			string mergeRes = "";
-			
-			// Swap range index numbers if need be.
+
+            // Swap range index numbers if need be.
 			if (sIndex > eIndex || eIndex < sIndex)
 			{
 				prepStart = eIndex;
@@ -141,39 +116,28 @@ namespace PalindromePartitions.Classes
 			}
 			
 			// Select strings and merge together.
-			itemCount = (prepEnd - prepStart) + 1;
-			chosenElements = substrings.GetRange(prepStart, itemCount);
-			mergeRes = String.Join("", chosenElements);
-			
-			return mergeRes;
-		}
+			int itemCount = (prepEnd - prepStart) + 1;
+			List<string> chosenElements = _substrings.GetRange(prepStart, itemCount);
+			return String.Join("", chosenElements);
+        }
 		
 		
 		// Write full partition string.
 		public string Join()
 		{
-			string joinRes = String.Join(",", substrings);
-			return joinRes;
-		}
+			return String.Join(",", _substrings);
+        }
 		
 		// Read particular substring.
 		public string GetSubstring(int tgtIndex)
 		{
 			string subRes = "";
-			
-			if (tgtIndex >= 0 && tgtIndex < substrings.Count)
-			{
-				subRes = substrings[tgtIndex];
-			}
-			
-			return subRes;
+            if (tgtIndex >= 0 && tgtIndex < _substrings.Count) subRes = _substrings[tgtIndex];
+            return subRes;
 		}
 		
 		
 		// Substring count property.
-		public int Count
-		{
-			get {return substrings.Count;}
-		}
-	}
+		public int Count => _substrings.Count;
+    }
 }

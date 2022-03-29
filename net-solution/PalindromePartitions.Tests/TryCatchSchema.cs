@@ -16,8 +16,8 @@ namespace PalindromePartitions.Tests
 			Type boolType = typeof(bool);
 			Type strType = typeof(string);
 			
-			SchemaValidation.CheckProperty(classObject, "successful", boolType);
-			SchemaValidation.CheckProperty(classObject, "errorMessage", strType);
+			SchemaValidation.CheckProperty(classObject, "Successful", boolType);
+			SchemaValidation.CheckProperty(classObject, "ErrorMessage", strType);
 		}
 		
     }

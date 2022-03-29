@@ -10,14 +10,11 @@ namespace PalindromePartitions.Tasks
 		// Main function.
 		public static void RunLoop(List<Partition> partitionList)
 		{
-			int loopIndex = 0;
-			Partition currentBase = Partition.Empty();
-			
-			// Loop processes partitions as they are found.
-			for (loopIndex = 0; loopIndex < partitionList.Count; loopIndex = loopIndex + 1)
+            // Loop processes partitions as they are found.
+			for (int loopIndex = 0; loopIndex < partitionList.Count; loopIndex++)
 			{
 				// Handle current partition.
-				currentBase = partitionList[loopIndex];
+				Partition currentBase = partitionList[loopIndex];
 				DerivePossibilities(currentBase, partitionList);
 			}
 		}
@@ -26,34 +23,24 @@ namespace PalindromePartitions.Tasks
 		// Derives new partitions from a base object.
 		private static void DerivePossibilities(Partition baseObj, List<Partition> parList)
 		{
-			int mergeCount = 1;
-			int startIndex = 0;
-			int endIndex = -1;
-			string currentSubOrig = "";
-			string currentSubRev = "";
-			Partition currentDerived = Partition.Empty();
-			bool currentAdd = false;
-			bool currentExists = false;
-			
-			// Outer loop merges an increasingly large number of substrings to find palindromes.
-			for (mergeCount = 1; mergeCount <= baseObj.Count; mergeCount = mergeCount + 1)
+            // Outer loop merges an increasingly large number of substrings to find palindromes.
+			for (int mergeCount = 1; mergeCount <= baseObj.Count; mergeCount++)
 			{
 				// Reset index.
-				startIndex = 0;
-				endIndex = -1;
-				
-				// Inner loop iterates merge start points.
+				int startIndex = 0;
+
+                // Inner loop iterates merge start points.
 				while (startIndex >= 0 && startIndex < baseObj.Count)
 				{
 					// Merge given number of substrings.
-					endIndex = startIndex + mergeCount;
+					int endIndex = startIndex + mergeCount;
 					
 					// Reset current palindrome.
-					currentSubOrig = "";
-					currentSubRev = "";
-					currentDerived = Partition.Empty();
-					currentAdd = false;
-					currentExists = false;
+					string currentSubOrig = "";
+					string currentSubRev = "";
+					Partition currentDerived = Partition.Empty();
+					bool currentAdd = false;
+					bool currentExists = false;
 					
 					// Only merge strings if end index is in range.
 					if (endIndex >= 0 && endIndex > startIndex && endIndex < baseObj.Count)
@@ -73,7 +60,7 @@ namespace PalindromePartitions.Tasks
 					}
 					
 					
-					if (currentAdd == true && currentExists != true)
+					if (currentAdd && !currentExists)
 					{
 						// Save partition if it does not already exist.
 						parList.Add(currentDerived);
@@ -90,10 +77,9 @@ namespace PalindromePartitions.Tasks
 		private static string PrepareReversedString(string origStr)
 		{
 			char[] charSplit = origStr.ToCharArray();
-			string revRes = "";
-			
-			Array.Reverse(charSplit);
-			revRes = new string(charSplit);
+
+            Array.Reverse(charSplit);
+			string revRes = new string(charSplit);
 			revRes = revRes.ToLower();
 			
 			return revRes;
@@ -105,26 +91,20 @@ namespace PalindromePartitions.Tasks
 		{
 			string tgtString = newObj.Join().ToLower();
 			int existIndex = 0;
-			Partition currentExistingItem = Partition.Empty();
-			string currentJoin = "";
-			
-			bool existRes = false;
+
+            bool existRes = false;
 			
 			// Loop until all items checked or duplicate partition found.
-			while (existIndex >= 0 && existIndex < existingObjects.Count && existRes != true)
+			while (existIndex >= 0 && existIndex < existingObjects.Count && !existRes)
 			{
 				// Write string from current partition.
-				currentExistingItem = existingObjects[existIndex];
-				currentJoin = currentExistingItem.Join().ToLower();
+				Partition currentExistingItem = existingObjects[existIndex];
+				string currentJoin = currentExistingItem.Join().ToLower();
 				
-				if (currentJoin == tgtString)
-				{
-					// Match
-					existRes = true;
-				}
-				
-				existIndex = existIndex + 1;
-			}
+				if (currentJoin == tgtString) existRes = true;
+
+                existIndex++;
+            }
 			
 			return existRes;
 		}
