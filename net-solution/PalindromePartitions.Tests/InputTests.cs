@@ -14,17 +14,8 @@ namespace PalindromePartitions.Tests
 		private static string emptyErrorText = "Input string is missing.";
 		private static string maxLengthText = "Input string can only have up to 100 characters.";
 		private static string wrongCharsText = "Input string must only contain alphanumeric characters.";
-		
-		[Test]
-		public void FunctionsExist()
-		{
-			Type classObject = typeof(InputArg);
-			SchemaValidation.CheckMethod(classObject, "ReadInputText", typeof(string), true);
-			SchemaValidation.CheckMethod(classObject, "ValidateInputText", typeof(bool), true);
-		}
-		
-		
-		[Test]
+
+        [Test]
         public void ValidString()
         {
 			string[] givenArgs = {"qu1ck8r0wnf0x"};

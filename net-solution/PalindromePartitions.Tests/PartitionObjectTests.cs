@@ -16,35 +16,9 @@ namespace PalindromePartitions.Tests
 		// Error message strings.
 		private static readonly string NegativeText = "Non-negative number required. (Parameter 'index')";
 		private static readonly string BoundText = WriteBoundErrorText();
-		
-		
-		// Class object schema.
-		[Test]
-        public void ObjectSchema()
-        {
-			// Value types.
-			Type intType = typeof(int);
-			Type strType = typeof(string);
-			Type strListType = typeof(List<string>);
-			
-			// 'Count' property.
-			SchemaValidation.CheckProperty(ObjectType, "Count", intType);
-			
-			// Constructor functions.
-			SchemaValidation.CheckMethod(ObjectType, "Initialize", ObjectType, true);
-			SchemaValidation.CheckMethod(ObjectType, "Empty", ObjectType, true);
-			SchemaValidation.CheckMethod(ObjectType, "Parse", ObjectType, true);
-			SchemaValidation.CheckMethod(ObjectType, "Derive", ObjectType, true);
-			
-			// Object functions.
-			SchemaValidation.CheckMethod(ObjectType, "Slice", strListType, false);
-			SchemaValidation.CheckMethod(ObjectType, "MergeSubstrings", strType, false);
-			SchemaValidation.CheckMethod(ObjectType, "Join", strType, false);
-			SchemaValidation.CheckMethod(ObjectType, "GetSubstring", strType, false);
-        }
-		
-		
-		// 'Join' function.
+
+
+        // 'Join' function.
 		[Test]
 		public void JoinFunction()
 		{

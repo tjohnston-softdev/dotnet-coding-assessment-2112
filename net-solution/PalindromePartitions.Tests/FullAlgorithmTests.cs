@@ -11,14 +11,7 @@ namespace PalindromePartitions.Tests
 	[TestFixture]
 	public class FullAlgorithmTests
     {
-		[Test]
-		public void FunctionExists()
-		{
-			Type classObject = typeof(StringPartitioning);
-			SchemaValidation.CheckMethod(classObject, "RunLoop", typeof(void), true);
-		}
-		
-		// 'geeks' input.
+        // 'geeks' input.
 		[Test]
         public void Geeks()
         {

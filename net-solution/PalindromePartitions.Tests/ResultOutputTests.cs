@@ -9,15 +9,7 @@ namespace PalindromePartitions.Tests
 	[TestFixture]
 	public class ResultOutputTests
     {
-		[Test]
-		public void FunctionExists()
-		{
-			Type classObject = typeof(AlgorithmResults);
-			SchemaValidation.CheckMethod(classObject, "GetOutputType", typeof(int), true);
-		}
-		
-		
-		[Test]
+        [Test]
         public void Complete()
         {
 			int testFlag = AlgorithmResults.GetOutputType(20);

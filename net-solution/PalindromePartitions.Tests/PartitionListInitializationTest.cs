@@ -11,14 +11,7 @@ namespace PalindromePartitions.Tests
 	[TestFixture]
 	public class PartitionListInitializationTest
     {
-		[Test]
-		public void FunctionExists()
-		{
-			Type classObject = typeof(AlgorithmResults);
-			SchemaValidation.CheckMethod(classObject, "InitializeList", typeof(List<Partition>), true);
-		}
-		
-		[Test]
+        [Test]
         public void IntlTest()
         {
 			string entryString = "initialize";
