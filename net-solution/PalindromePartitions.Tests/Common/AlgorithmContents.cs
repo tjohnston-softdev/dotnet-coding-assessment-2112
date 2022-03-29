@@ -1,7 +1,6 @@
 using System;
 using NUnit.Framework;
 using System.Collections.Generic;
-using PalindromePartitions.Classes;
 
 namespace PalindromePartitions.Tests.Common
 {
@@ -18,27 +17,23 @@ namespace PalindromePartitions.Tests.Common
 		
 		// Result comparison loop.
 		private static void LoopComparison(List<string> expList, List<string> actList)
-		{
-			int loopIndex = 0;
-			string currentActualString = "";
-			bool currentUnique = false;
-			bool currentExpectFound = false;
+        {
+            int loopIndex = 0;
+            bool canContinue = true;
 			
-			bool canContinue = true;
-			
-			while (loopIndex >= 0 && loopIndex < actList.Count && canContinue == true)
+			while (loopIndex >= 0 && loopIndex < actList.Count && canContinue)
 			{
 				// Validate actual output string.
-				currentActualString = actList[loopIndex];
-				currentUnique = CheckUnique(currentActualString, actList, loopIndex);
-				currentExpectFound = FindExpected(currentActualString, expList);
+				string currentActualString = actList[loopIndex];
+				bool currentUnique = CheckUnique(currentActualString, actList, loopIndex);
+				bool currentExpectFound = FindExpected(currentActualString, expList);
 				
-				if (currentUnique == true && currentExpectFound == true)
+				if (currentUnique && currentExpectFound)
 				{
 					// Match found.
-					loopIndex = loopIndex + 1;
-				}
-				else if (currentUnique == true)
+                    loopIndex++;
+                }
+				else if (currentUnique)
 				{
 					// Result not allowed.
 					canContinue = false;
@@ -63,7 +58,7 @@ namespace PalindromePartitions.Tests.Common
 			if (matchIndex >= 0 && matchIndex > originPoint && matchIndex < strList.Count)
 			{
 				// Duplicate found.
-				uniqueRes = true;
+				uniqueRes = false;
 			}
 			
 			return uniqueRes;

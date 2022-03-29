@@ -30,17 +30,14 @@ namespace PalindromePartitions.Tests.Common
 		public static void CompareInitializedConstructor(ref string origStr, Partition resObj)
 		{
 			int loopIndex = 0;
-			string currentChar = "";
-			string currentSubstring = "";
-			
-			bool compMatch = true;
+            bool compMatch = true;
 			
 			// Loop original strng characters.
-			while (loopIndex >= 0 && loopIndex < origStr.Length && compMatch == true)
+			while (loopIndex >= 0 && loopIndex < origStr.Length && compMatch)
 			{
 				// Read both character and substring.
-				currentChar = origStr[loopIndex].ToString();
-				currentSubstring = resObj.GetSubstring(loopIndex);
+				string currentChar = origStr[loopIndex].ToString();
+				string currentSubstring = resObj.GetSubstring(loopIndex);
 				
 				if (currentChar == currentSubstring)
 				{

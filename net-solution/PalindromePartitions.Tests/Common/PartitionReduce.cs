@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using PalindromePartitions.Classes;
 
@@ -9,17 +8,13 @@ namespace PalindromePartitions.Tests.Common
     {
 		public static List<string> Loop(List<Partition> resObj)
 		{
-			int loopIndex = 0;
-			Partition currentPartition = Partition.Empty();
-			string currentString = "";
+            List<string> reduceRes = new List<string>();
 			
-			List<string> reduceRes = new List<string>();
-			
-			for (loopIndex = 0; loopIndex < resObj.Count; loopIndex = loopIndex + 1)
+			for (int loopIndex = 0; loopIndex < resObj.Count; loopIndex++)
 			{
 				// Join partition substrings together.
-				currentPartition = resObj[loopIndex];
-				currentString = currentPartition.Join();
+				Partition currentPartition = resObj[loopIndex];
+				string currentString = currentPartition.Join();
 				reduceRes.Add(currentString);
 			}
 			

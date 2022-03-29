@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using PalindromePartitions.Classes;
-using PalindromePartitions.Tasks;
 using PalindromePartitions.Tests.Common;
 
 namespace PalindromePartitions.Tests
@@ -12,11 +11,11 @@ namespace PalindromePartitions.Tests
 	public class PartitionObjectTests
     {
 		// Object type shortcut.
-		private static Type objectType = typeof(Partition);
+		private static readonly Type ObjectType = typeof(Partition);
 		
 		// Error message strings.
-		private static string negativeText = "Non-negative number required. (Parameter 'index')";
-		private static string boundText = WriteBoundErrorText();
+		private static readonly string NegativeText = "Non-negative number required. (Parameter 'index')";
+		private static readonly string BoundText = WriteBoundErrorText();
 		
 		
 		// Class object schema.
@@ -29,19 +28,19 @@ namespace PalindromePartitions.Tests
 			Type strListType = typeof(List<string>);
 			
 			// 'Count' property.
-			SchemaValidation.CheckProperty(objectType, "Count", intType);
+			SchemaValidation.CheckProperty(ObjectType, "Count", intType);
 			
 			// Constructor functions.
-			SchemaValidation.CheckMethod(objectType, "Initialize", objectType, true);
-			SchemaValidation.CheckMethod(objectType, "Empty", objectType, true);
-			SchemaValidation.CheckMethod(objectType, "Parse", objectType, true);
-			SchemaValidation.CheckMethod(objectType, "Derive", objectType, true);
+			SchemaValidation.CheckMethod(ObjectType, "Initialize", ObjectType, true);
+			SchemaValidation.CheckMethod(ObjectType, "Empty", ObjectType, true);
+			SchemaValidation.CheckMethod(ObjectType, "Parse", ObjectType, true);
+			SchemaValidation.CheckMethod(ObjectType, "Derive", ObjectType, true);
 			
 			// Object functions.
-			SchemaValidation.CheckMethod(objectType, "Slice", strListType, false);
-			SchemaValidation.CheckMethod(objectType, "MergeSubstrings", strType, false);
-			SchemaValidation.CheckMethod(objectType, "Join", strType, false);
-			SchemaValidation.CheckMethod(objectType, "GetSubstring", strType, false);
+			SchemaValidation.CheckMethod(ObjectType, "Slice", strListType, false);
+			SchemaValidation.CheckMethod(ObjectType, "MergeSubstrings", strType, false);
+			SchemaValidation.CheckMethod(ObjectType, "Join", strType, false);
+			SchemaValidation.CheckMethod(ObjectType, "GetSubstring", strType, false);
         }
 		
 		
@@ -70,7 +69,7 @@ namespace PalindromePartitions.Tests
 		{
 			string entryString = "quickbrownfox";
 			Partition intlObj = Partition.Initialize(ref entryString);
-			Assert.IsInstanceOf(objectType, intlObj);
+			Assert.IsInstanceOf(ObjectType, intlObj);
 			Assert.AreEqual(intlObj.Count, entryString.Length);
 			PartitionContents.CompareInitializedConstructor(ref entryString, intlObj);
 		}
@@ -112,11 +111,10 @@ namespace PalindromePartitions.Tests
 		{
 			string entryString = "meow,tacocat,hiss";
 			Partition parsedObj = Partition.Parse(entryString);
-			string actualJoin = "";
-			
-			Assert.IsInstanceOf(objectType, parsedObj);
+
+            Assert.IsInstanceOf(ObjectType, parsedObj);
 			Assert.AreEqual(parsedObj.Count, 3);
-			actualJoin = PartitionContents.Check(parsedObj);
+			string actualJoin = PartitionContents.Check(parsedObj);
 			Assert.AreEqual(entryString, actualJoin);
 		}
 		
@@ -181,7 +179,7 @@ namespace PalindromePartitions.Tests
 		{
 			Partition entryObject = GetFullInput();
 			TryCatchResult testOutcome = InvalidCalls.PartitionSlice(entryObject, -1, 2);
-			InvalidCalls.CheckErrorResult(testOutcome, negativeText);
+			InvalidCalls.CheckErrorResult(testOutcome, NegativeText);
 		}
 		
 		
@@ -191,7 +189,7 @@ namespace PalindromePartitions.Tests
 		{
 			Partition entryObject = GetFullInput();
 			TryCatchResult testOutcome = InvalidCalls.PartitionSlice(entryObject, 5, 100);
-			InvalidCalls.CheckErrorResult(testOutcome, boundText);
+			InvalidCalls.CheckErrorResult(testOutcome, BoundText);
 		}
 		
 		
@@ -231,7 +229,7 @@ namespace PalindromePartitions.Tests
 		{
 			Partition entryObject = GetFullInput();
 			TryCatchResult testOutcome = InvalidCalls.PartitionMerge(entryObject, -1, 3);
-			InvalidCalls.CheckErrorResult(testOutcome, negativeText);
+			InvalidCalls.CheckErrorResult(testOutcome, NegativeText);
 		}
 		
 		// 'MergeSubstrings' function - Overflow.
@@ -240,7 +238,7 @@ namespace PalindromePartitions.Tests
 		{
 			Partition entryObject = GetFullInput();
 			TryCatchResult testOutcome = InvalidCalls.PartitionMerge(entryObject, 3, 99);
-			InvalidCalls.CheckErrorResult(testOutcome, boundText);
+			InvalidCalls.CheckErrorResult(testOutcome, BoundText);
 		}
 		
 		// 'GetSubstring' function - Valid.
@@ -269,10 +267,9 @@ namespace PalindromePartitions.Tests
 		{
 			Partition originalObject = Partition.Parse("ta,co,cat,abc,def");
 			Partition derivedObject = Partition.Derive(originalObject, "tacocat", 0, 2);
-			string deriveJoin = "";
-			
-			Assert.IsInstanceOf(objectType, derivedObject);
-			deriveJoin = derivedObject.Join();
+
+            Assert.IsInstanceOf(ObjectType, derivedObject);
+			string deriveJoin = derivedObject.Join();
 			
 			Assert.AreEqual(deriveJoin, "tacocat,abc,def");
 		}

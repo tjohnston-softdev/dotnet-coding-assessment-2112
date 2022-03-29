@@ -1,8 +1,5 @@
 using System;
 using System.Reflection;
-using System.Collections.Generic;
-using NUnit.Framework;
-using PalindromePartitions.Classes;
 
 namespace PalindromePartitions.Tests.Common
 {
@@ -68,7 +65,7 @@ namespace PalindromePartitions.Tests.Common
 			
 			errTxt += vBase;
 			errTxt += " does not have a property named ";
-			errTxt += quoteName(vName);
+			errTxt += QuoteName(vName);
 			
 			throw new Exception(errTxt);
 		}
@@ -83,7 +80,7 @@ namespace PalindromePartitions.Tests.Common
 			errTxt += " does not have a ";
 			errTxt += WriteMethodType(vStatic);
 			errTxt += "named ";
-			errTxt += quoteName(vName);
+			errTxt += QuoteName(vName);
 			
 			throw new Exception(errTxt);
 		}
@@ -95,7 +92,7 @@ namespace PalindromePartitions.Tests.Common
 			
 			errTxt += vBase;
 			errTxt += " property ";
-			errTxt += quoteName(vName);
+			errTxt += QuoteName(vName);
 			errTxt += " must be a valid ";
 			errTxt += vType;
 			
@@ -109,7 +106,7 @@ namespace PalindromePartitions.Tests.Common
 			
 			errTxt += vBase;
 			errTxt += WriteMethodType(vStatic);
-			errTxt += quoteName(vName);
+			errTxt += QuoteName(vName);
 			errTxt += " does not return a ";
 			errTxt += vType;
 			errTxt += " value";
@@ -121,21 +118,15 @@ namespace PalindromePartitions.Tests.Common
 		private static string WriteMethodType(bool stc)
 		{
 			string writeRes = " method ";
-			
-			if (stc == true)
-			{
-				writeRes = " static method ";
-			}
-			
-			return writeRes;
+            if (stc) writeRes = " static method ";
+            return writeRes;
 		}
 		
 		// Writes quoted name into error text.
-		private static string quoteName(string nTxt)
+		private static string QuoteName(string nTxt)
 		{
-			string quoteRes = "'" + nTxt + "'";
-			return quoteRes;
-		}
+			return "'" + nTxt + "'";
+        }
 		
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using NUnit.Framework;
 using PalindromePartitions.Classes;
 using PalindromePartitions.Tasks;
@@ -23,27 +22,22 @@ namespace PalindromePartitions.Tests
         public void IntlTest()
         {
 			string entryString = "initialize";
-			Partition singlePartitionObject = Partition.Empty();
-			List<Partition> preparedList = new List<Partition>();
-			Partition listPartitionObject = Partition.Empty();
-			string singleObjectJoin = "";
-			string listObjectJoin = "";
-			
-			// Create stand-alone partition object.
-			singlePartitionObject = Partition.Initialize(ref entryString);
-			
+
+            // Create stand-alone partition object.
+			Partition singlePartitionObject = Partition.Initialize(ref entryString);
+
 			// Create listed partition object.
-			preparedList = AlgorithmResults.InitializeList(ref entryString);
+			List<Partition> preparedList = AlgorithmResults.InitializeList(ref entryString);
 			Assert.AreEqual(preparedList.Count, 1);
-			listPartitionObject = preparedList[0];
+			Partition listPartitionObject = preparedList[0];
 			
 			// Check if partition substring counts match.
 			Assert.AreEqual(entryString.Length, singlePartitionObject.Count);
 			Assert.AreEqual(entryString.Length, listPartitionObject.Count);
 			
 			// Check if partition objects match.
-			singleObjectJoin = singlePartitionObject.Join();
-			listObjectJoin = listPartitionObject.Join();
+			string singleObjectJoin = singlePartitionObject.Join();
+			string listObjectJoin = listPartitionObject.Join();
 			Assert.AreEqual(singleObjectJoin, listObjectJoin);
         }
 		

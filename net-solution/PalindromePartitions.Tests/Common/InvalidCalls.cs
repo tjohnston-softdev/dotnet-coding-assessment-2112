@@ -13,14 +13,13 @@ namespace PalindromePartitions.Tests.Common
 		public static TryCatchResult ArgumentValidationPopulated(string entryValue)
 		{
 			string[] givenArgs = new string[1];
-			string extractedValue = "";
-			bool textValid = false;
+            bool textValid;
 			string excMsg = "";
 			
 			try
 			{
 				givenArgs[0] = entryValue;
-				extractedValue = InputArg.ReadInputText(givenArgs);
+				string extractedValue = InputArg.ReadInputText(givenArgs);
 				textValid = InputArg.ValidateInputText(ref extractedValue);
 				
 			}
@@ -38,14 +37,13 @@ namespace PalindromePartitions.Tests.Common
 		// Input argument validation - Empty.
 		public static TryCatchResult ArgumentValidationEmpty()
 		{
-			string[] emptyArr = new string[0];
-			string readString = "";
-			bool emptyValid = false;
+            bool emptyValid;
 			string excMsg = "";
 			
 			try
 			{
-				readString = InputArg.ReadInputText(emptyArr);
+                string[] emptyArr = new string[0];
+				string readString = InputArg.ReadInputText(emptyArr);
 				emptyValid = InputArg.ValidateInputText(ref readString);
 			}
 			catch (Exception flaggedError)
@@ -61,8 +59,8 @@ namespace PalindromePartitions.Tests.Common
 		
 		// Slice partition.
 		public static TryCatchResult PartitionSlice(Partition entryObj, int inpStart, int inpLength)
-		{
-			bool sliceValid = false;
+        {
+            bool sliceValid;
 			string excMsg = "";
 			
 			try
@@ -83,8 +81,8 @@ namespace PalindromePartitions.Tests.Common
 		
 		// Merge partition substrings.
 		public static TryCatchResult PartitionMerge(Partition entryObj, int inpStart, int inpEnd)
-		{
-			bool mergeValid = false;
+        {
+            bool mergeValid;
 			string excMsg = "";
 			
 			try

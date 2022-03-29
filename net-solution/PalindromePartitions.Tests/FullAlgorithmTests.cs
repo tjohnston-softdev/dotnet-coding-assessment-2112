@@ -23,10 +23,9 @@ namespace PalindromePartitions.Tests
         public void Geeks()
         {
 			List<Partition> testOutcome = CallAlgorithm(AlgorithmTestData.geeksInput);
-			List<string> resultStrings = new List<string>();
-			
-			CheckResultObject(testOutcome, 2);
-			resultStrings = PartitionReduce.Loop(testOutcome);
+
+            CheckResultObject(testOutcome, 2);
+            List<string> resultStrings = PartitionReduce.Loop(testOutcome);
 			AlgorithmContents.CheckResults(AlgorithmTestData.geeksOutput, resultStrings);
         }
 		
@@ -35,10 +34,9 @@ namespace PalindromePartitions.Tests
 		public void Letters()
 		{
 			List<Partition> testOutcome = CallAlgorithm(AlgorithmTestData.lettersInput);
-			List<string> resultStrings = new List<string>();
-			
-			CheckResultObject(testOutcome, 2);
-			resultStrings = PartitionReduce.Loop(testOutcome);
+
+            CheckResultObject(testOutcome, 2);
+            List<string> resultStrings = PartitionReduce.Loop(testOutcome);
 			AlgorithmContents.CheckResults(AlgorithmTestData.lettersOutput, resultStrings);
 		}
 		
@@ -47,10 +45,9 @@ namespace PalindromePartitions.Tests
 		public void Custom()
 		{
 			List<Partition> testOutcome = CallAlgorithm(AlgorithmTestData.customInput);
-			List<string> resultStrings = new List<string>();
-			
-			CheckResultObject(testOutcome, 12);
-			resultStrings = PartitionReduce.Loop(testOutcome);
+
+            CheckResultObject(testOutcome, 12);
+            List<string> resultStrings = PartitionReduce.Loop(testOutcome);
 			AlgorithmContents.CheckResults(AlgorithmTestData.customOutput, resultStrings);
 		}
 		
@@ -61,7 +58,7 @@ namespace PalindromePartitions.Tests
 			bool inputStringValid = InputArg.ValidateInputText(ref algoInput);
 			List<Partition> resultList = new List<Partition>();
 			
-			if (inputStringValid == true)
+			if (inputStringValid)
 			{
 				resultList = AlgorithmResults.InitializeList(ref algoInput);
 				StringPartitioning.RunLoop(resultList);

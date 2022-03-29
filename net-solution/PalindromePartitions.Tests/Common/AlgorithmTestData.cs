@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace PalindromePartitions.Tests.Common
@@ -7,14 +6,14 @@ namespace PalindromePartitions.Tests.Common
 	public class AlgorithmTestData
     {
 		// Private properties - Input
-		private static string pGeeksInput = "geeks";
-		private static string pLettersInput = "aab";
-		private static string pCustomInput = "thequickbrownfoxnamedottojumpsoverthelazytacocatlastnight";
+		private static readonly string GeeksInput = "geeks";
+		private static readonly string LettersInput = "aab";
+		private static readonly string CustomInput = "thequickbrownfoxnamedottojumpsoverthelazytacocatlastnight";
 		
 		// Private properties - Output
-		private static List<string> pGeeksOutput = DefineGeeksExpect();
-		private static List<string> pLettersOutput = DefineLettersExpect();
-		private static List<string> pCustomOutput = DefineCustomExpect();
+		private static readonly List<string> GeeksOutput = DefineGeeksExpect();
+		private static readonly List<string> LettersOutput = DefineLettersExpect();
+		private static readonly List<string> CustomOutput = DefineCustomExpect();
 		
 		
 		// Function writes expexted 'Geeks' output.
@@ -60,40 +59,21 @@ namespace PalindromePartitions.Tests.Common
 		
 		
 		// Public 'Geeks' input property.
-		public static string geeksInput
-		{
-			get {return pGeeksInput;}
-		}
-		
-		// Public 'Letters' input property.
-		public static string lettersInput
-		{
-			get {return pLettersInput;}
-		}
-		
-		// Public 'Custom' input property.
-		public static string customInput
-		{
-			get {return pCustomInput;}
-		}
-		
-		// Public 'Geeks' output property.
-		public static List<string> geeksOutput
-		{
-			get {return pGeeksOutput;}
-		}
-		
-		// Public 'Letters' output property.
-		public static List<string> lettersOutput
-		{
-			get {return pLettersOutput;}
-		}
-		
-		// Public 'Custom' output property.
-		public static List<string> customOutput
-		{
-			get {return pCustomOutput;}
-		}
-		
+		public static string geeksInput => GeeksInput;
+
+        // Public 'Letters' input property.
+		public static string lettersInput => LettersInput;
+
+        // Public 'Custom' input property.
+		public static string customInput => CustomInput;
+
+        // Public 'Geeks' output property.
+		public static List<string> geeksOutput => GeeksOutput;
+
+        // Public 'Letters' output property.
+		public static List<string> lettersOutput => LettersOutput;
+
+        // Public 'Custom' output property.
+		public static List<string> customOutput => CustomOutput;
     }
 }
