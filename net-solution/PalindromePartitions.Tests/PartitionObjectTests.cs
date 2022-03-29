@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using PalindromePartitions.Classes;
@@ -10,41 +9,18 @@ namespace PalindromePartitions.Tests
 	[TestFixture]
 	public class PartitionObjectTests
     {
-		// Object type shortcut.
-		private static readonly Type ObjectType = typeof(Partition);
-		
-		// Error message strings.
+        // Error message strings.
 		private static readonly string NegativeText = "Non-negative number required. (Parameter 'index')";
 		private static readonly string BoundText = WriteBoundErrorText();
 
 
-        // 'Join' function.
-		[Test]
-		public void JoinFunction()
-		{
-			Partition emptyObj = Partition.Empty();
-			string emptyJoin = emptyObj.Join();
-			Assert.AreEqual(emptyJoin, "");
-		}
-		
-		
-		// 'Empty' constructor.
-		[Test]
-        public void EmptyObjectConstructor()
-        {
-			Partition emptyObj = Partition.Empty();
-			Assert.AreEqual(emptyObj.Count, 0);
-        }
-		
-		
-		// 'Initialize' constructor - Valid.
+        // 'Initialize' constructor - Valid.
 		[Test]
 		public void InitializeObjectConstructorValid()
 		{
 			string entryString = "quickbrownfox";
 			Partition intlObj = Partition.Initialize(ref entryString);
-			Assert.IsInstanceOf(ObjectType, intlObj);
-			Assert.AreEqual(intlObj.Count, entryString.Length);
+            Assert.AreEqual(intlObj.Count, entryString.Length);
 			PartitionContents.CompareInitializedConstructor(ref entryString, intlObj);
 		}
 		
@@ -86,7 +62,6 @@ namespace PalindromePartitions.Tests
 			string entryString = "meow,tacocat,hiss";
 			Partition parsedObj = Partition.Parse(entryString);
 
-            Assert.IsInstanceOf(ObjectType, parsedObj);
 			Assert.AreEqual(parsedObj.Count, 3);
 			string actualJoin = PartitionContents.Check(parsedObj);
 			Assert.AreEqual(entryString, actualJoin);
@@ -242,7 +217,6 @@ namespace PalindromePartitions.Tests
 			Partition originalObject = Partition.Parse("ta,co,cat,abc,def");
 			Partition derivedObject = Partition.Derive(originalObject, "tacocat", 0, 2);
 
-            Assert.IsInstanceOf(ObjectType, derivedObject);
 			string deriveJoin = derivedObject.Join();
 			
 			Assert.AreEqual(deriveJoin, "tacocat,abc,def");

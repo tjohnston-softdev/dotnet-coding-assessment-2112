@@ -11,9 +11,9 @@ namespace PalindromePartitions.Tests
 	public class InputTests
     {
 		// Error message strings.
-		private static string emptyErrorText = "Input string is missing.";
-		private static string maxLengthText = "Input string can only have up to 100 characters.";
-		private static string wrongCharsText = "Input string must only contain alphanumeric characters.";
+		private static readonly string EmptyErrorText = "Input string is missing.";
+		private static readonly string MaxLengthText = "Input string can only have up to 100 characters.";
+		private static readonly string WrongCharsText = "Input string must only contain alphanumeric characters.";
 
         [Test]
         public void ValidString()
@@ -29,14 +29,14 @@ namespace PalindromePartitions.Tests
 		public void EmptyArguments()
 		{
 			TryCatchResult testOutcome = InvalidCalls.ArgumentValidationEmpty();
-			InvalidCalls.CheckErrorResult(testOutcome, emptyErrorText);
+			InvalidCalls.CheckErrorResult(testOutcome, EmptyErrorText);
 		}
 		
 		[Test]
 		public void EmptyString()
 		{
 			TryCatchResult testOutcome = InvalidCalls.ArgumentValidationPopulated("");
-			InvalidCalls.CheckErrorResult(testOutcome, emptyErrorText);
+			InvalidCalls.CheckErrorResult(testOutcome, EmptyErrorText);
 		}
 		
 		[Test]
@@ -44,21 +44,21 @@ namespace PalindromePartitions.Tests
 		{
 			string reallyLongEntry = LongString.Write();
 			TryCatchResult testOutcome = InvalidCalls.ArgumentValidationPopulated(reallyLongEntry);
-			InvalidCalls.CheckErrorResult(testOutcome, maxLengthText);
+			InvalidCalls.CheckErrorResult(testOutcome, MaxLengthText);
 		}
 		
 		[Test]
 		public void InvalidCharacters()
 		{
 			TryCatchResult testOutcome = InvalidCalls.ArgumentValidationPopulated("qu!ck-#rwn-f()%");
-			InvalidCalls.CheckErrorResult(testOutcome, wrongCharsText);
+			InvalidCalls.CheckErrorResult(testOutcome, WrongCharsText);
 		}
 		
 		[Test]
 		public void InvalidSpaces()
 		{
 			TryCatchResult testOutcome = InvalidCalls.ArgumentValidationPopulated("This string has spaces in it");
-			InvalidCalls.CheckErrorResult(testOutcome, wrongCharsText);
+			InvalidCalls.CheckErrorResult(testOutcome, WrongCharsText);
 		}
     }
 }

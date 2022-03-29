@@ -36,34 +36,9 @@ namespace PalindromePartitions.Tasks
 				Console.WriteLine("No partitions found");
 			}
 		}
-		
-		
-		// Debug function indicates output mode based on given number. Used for unit testing.
-		public static int GetOutputType(int resultCount)
-        {
-            int resultFlag;
-			
-			if (resultCount > 0 && resultCount <= MaxResultsDisplay)
-			{
-				// Complete.
-				resultFlag = 1;
-			}
-			else if (resultCount > MaxResultsDisplay)
-			{
-				// Truncated.
-				resultFlag = 0;
-			}
-			else
-			{
-				// Empty.
-				resultFlag = -1;
-			}
-			
-			return resultFlag;
-		}
-		
-		
-		// Output display loop.
+
+
+        // Output display loop.
 		private static void PrintOutput(List<Partition> rList)
 		{
             int loopCutoff = Math.Min(rList.Count, MaxResultsDisplay);
