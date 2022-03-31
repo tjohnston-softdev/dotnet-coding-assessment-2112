@@ -1,4 +1,4 @@
-# Technical Test
+# Coding Assessment
 
 This test is to evaluate your coding skills and logical thinking with a small cognitive project.
 
