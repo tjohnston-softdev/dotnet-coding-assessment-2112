@@ -22,6 +22,8 @@ The assessment instructions were sent as an E-Mail which I interpreted into a [m
 
 * **Monday 20th:** Submission was publicly released to GitHub.
 
+A revised version was released on 31 March 2022.
+
 ---
 
 ## Running
